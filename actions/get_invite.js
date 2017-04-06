@@ -15,6 +15,7 @@ export function getInvite() {
   }
 }
 
+
 function getInviteRequestedAction() {
   return {
     type: ActionTypes.GetInviteRequested

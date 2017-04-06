@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { inviteReducer } from '../Reducers/invite-reducer';
+import { inviteReducer } from '../reducers/invite-reducer';
 
 const rootReducer = combineReducers({
   invite: inviteReducer
