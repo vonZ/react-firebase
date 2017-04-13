@@ -2,16 +2,20 @@
   "agenda" : "Business meeting for the next Facebook",
   "guests" : {
     "-KUDHLoA79LzYXsXLNZM" : {
-      "name" : "Dustin Moskovitz"
+      "name" : "Dustin Moskovitz",
+      "baseImg" : ""
     },
     "-KUDHPgsYqOVcC-Db7-W" : {
-      "name" : "Eduardo Saverin"
+      "name" : "Eduardo Saverin",
+      "baseImg" : ""
     },
     "-KUDHS9kUXPYWN8aqD6A" : {
-      "name" : "Chris Hughes"
+      "name" : "Chris Hughes",
+      "baseImg" : ""
     },
     "-KUDHW9EmNahoyjdwJdf" : {
-      "name" : "Elon Musk"
+      "name" : "Elon Musk",
+      "baseImg" : ""
     }
   },
   "host" : "Mark Zuckerberg"

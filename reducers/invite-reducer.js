@@ -47,9 +47,6 @@ export function inviteReducer(state = {}, action) {
         inProgress: false,
         success: 'Added guest.'
       });
-      // newState.guests = newState.guests || [];
-      // newState.guests = newState.guests.slice();
-      // newState.guests.push(action.guest);
       return newState;
     }
     case ActionTypes.GuestAdded: {
@@ -58,6 +55,13 @@ export function inviteReducer(state = {}, action) {
       newState.guests = newState.guests.slice();
       newState.guests.push(action.guest);
       return newState;
+    }
+    case ActionTypes.DeleteInviteFulfilled: {
+        const newState = Object.assign({}, state);
+        console.log("newState.guests: ", newState.guests);
+        console.log("action.id: ", action.id);
+        newState.guests.slice(action.id);
+        return newState;
     }
     default:
       return state;

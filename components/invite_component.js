@@ -6,7 +6,7 @@ export default class Invite extends React.Component {
     super();
     this.state = {
       name: '',
-      imgBase: ''
+      baseUrl: '',
     };
   }
 
@@ -15,7 +15,7 @@ export default class Invite extends React.Component {
   }
 
   render() {
-    const { host, agenda, guest_count, guests } = this.props.invite;
+    // const { host, agenda, guest_count, guests } = this.props.invite;
     return (
       <div className="container">
         <div className="well">
@@ -27,7 +27,7 @@ export default class Invite extends React.Component {
               <b>Host:</b>
             </div>
             <div className="col-sm-8 col-md-10">
-              {host}
+              {this.props.inviteObject.host}
             </div>
           </div>
           <div className="row">
@@ -35,7 +35,7 @@ export default class Invite extends React.Component {
               <b>Agenda:</b>
             </div>
             <div className="col-sm-8 col-md-10">
-              {agenda}
+              {this.props.inviteObject.agenda}
             </div>
           </div>
         </div>
@@ -60,8 +60,10 @@ export default class Invite extends React.Component {
                 <input
                   type="file"
                   id="inputFileToLoad"
-                  value={this.state.imgBase}
+                  value={this.props.baseUrl}
+                  onChange={this.props.onGetImgPreview}
                 />
+                <img src="" height="200" alt="Image preview..."  />
               </div>
             </div>
             <div className="row">
@@ -69,7 +71,7 @@ export default class Invite extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => this.props.onAddToInvite(this.state.name)}
+                  onClick={() => this.props.onAddToInvite(this.state)}
                 >
                   I am coming!
                 </button>
@@ -78,14 +80,15 @@ export default class Invite extends React.Component {
         </div>
         <div className="meeting-list">
           <h2>Guests</h2>
-          {guests && guests.length > 0 ? (
+          {this.props.inviteObject.guests && this.props.inviteObject.guests.length > 0 ? (
             <ul>
-              {guests.map((guest, index) => {
+              {this.props.inviteObject.guests.map((guest, index) => {
                 return (
-                    <div key={index}>
-                        <li>
-                            {guest.name}
-                        </li>
+                    <li key={index}>
+                        <p>{guest.name}</p>
+                        {guest.baseImg ? (
+                            <img src={"data:image/png;base64," + guest.baseImg} />
+                        ) : null}
                         <button
                             type="button"
                             className="btn btn-primary"
@@ -93,7 +96,7 @@ export default class Invite extends React.Component {
                         >
                           Delete me!
                         </button>
-                    </div>
+                    </li>
                 );
               })}
             </ul>

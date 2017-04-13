@@ -7,6 +7,10 @@ const actionTypes = {
   AddToInviteRejected: 'ADD_TO_INVITE_REJECTED',
   AddToInviteFulfilled: 'ADD_TO_INVITE_FULFILLED',
 
+  DeleteInviteRequested: 'DELETE_INVITE_REQUESTED',
+  DeleteInviteRejected: 'DELETE_INVITE_REJECTED',
+  DeleteInviteFulfilled: 'DELETE_INVITE_FULFILLED',
+
   GuestAdded: 'GUEST_ADDED'
 };
 
