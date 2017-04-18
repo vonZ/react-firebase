@@ -12,6 +12,7 @@ export default class Invite extends React.Component {
 
   componentDidMount() {
     this.props.onGetInvite();
+    this.setState({baseUrl: this.props.baseUrl})
   }
 
   render() {
@@ -47,8 +48,7 @@ export default class Invite extends React.Component {
               <div className="col-sm-8 col-md-10">
                 <input
                   type="text"
-                  value={this.state.name}
-                  onChange={e => this.setState({ name: e.target.value })}
+                  onChange={this.props.onChange}
                 />
               </div>
             </div>
@@ -60,7 +60,6 @@ export default class Invite extends React.Component {
                 <input
                   type="file"
                   id="inputFileToLoad"
-                  value={this.props.baseUrl}
                   onChange={this.props.onGetImgPreview}
                 />
                 <img src="" height="200" alt="Image preview..."  />
@@ -71,7 +70,7 @@ export default class Invite extends React.Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => this.props.onAddToInvite(this.state)}
+                  onClick={this.props.onPostData}
                 >
                   I am coming!
                 </button>
@@ -87,12 +86,12 @@ export default class Invite extends React.Component {
                     <li key={index}>
                         <p>{guest.name}</p>
                         {guest.baseImg ? (
-                            <img src={"data:image/png;base64," + guest.baseImg} />
+                            <img src={guest.baseImg} />
                         ) : null}
                         <button
                             type="button"
                             className="btn btn-primary"
-                            onClick={() => this.props.onDeleteInvite('-KhS5_HHXoKavb6u_ZoH')}
+                            onClick={() => this.props.onDeleteInvite('-KhwbScMUdXOXiLDa-o_')}
                         >
                           Delete me!
                         </button>

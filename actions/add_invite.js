@@ -9,7 +9,7 @@ export function addToInvite(guest) {
     // guestsRef.child('-KhS0WbBjul4qSEiushh').remove();
     const pushedRef = database.ref('/guests').push({
         name: guest.name,
-        baseImg: guest.imgBase
+        baseImg: guest.baseUrl
     })
     .then(() => {
         // const key = pushedRef.key;

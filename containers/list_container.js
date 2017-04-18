@@ -11,9 +11,16 @@ class ListPage extends React.Component {
 
     constructor(props, context) {
         super(props, context);
+
         this.state = {
-          baseUrl: ''
-        };
+            name: '',
+            baseUrl: ''
+        }
+
+        this.getImgPreview = this.getImgPreview.bind(this);
+        this.updatePostState = this.updatePostState.bind(this);
+        this.postData = this.postData.bind(this);
+
     }
 
     getImgPreview() {
@@ -23,10 +30,7 @@ class ListPage extends React.Component {
 
         reader.addEventListener("load", () => {
             preview.src = reader.result;
-            const base = btoa(reader.result);
-            this.setState({
-                baseUrl: base
-            });
+            this.setState({baseUrl: preview.src});
         }, false);
 
         if (file) {
@@ -34,15 +38,25 @@ class ListPage extends React.Component {
         }
     }
 
+    updatePostState(e) {
+        this.setState({name: e.target.value});
+    }
+
+    postData() {
+        this.props.onAddToInvite(this.state);
+    }
+
     render() {
-        const baseUrl = this.state.baseUrl;
 
         return (
             <Invite
-                baseUrl = {baseUrl}
+                onPostData = {this.postData}
+                onChange = {this.updatePostState}
+                baseUrl = {this.state.baseUrl}
                 inviteObject = {this.props.invite}
                 onGetInvite = {this.props.onGetInvite}
                 onAddToInvite = {this.props.onAddToInvite}
+                onDeleteInvite = {this.props.onDeleteInvite}
                 onGetImgPreview = {this.getImgPreview}
             />
         );
