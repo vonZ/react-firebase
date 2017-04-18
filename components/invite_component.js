@@ -62,7 +62,7 @@ export default class Invite extends React.Component {
                   id="inputFileToLoad"
                   onChange={this.props.onGetImgPreview}
                 />
-                <img src="" height="200" alt="Image preview..."  />
+              <img src="" height="300" alt="Image preview..."  />
               </div>
             </div>
             <div className="row">
