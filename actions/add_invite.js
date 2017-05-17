@@ -1,27 +1,23 @@
 import ActionTypes from '../constants/action_types';
 import database from './database';
+import firebase from 'firebase';
 
 export function addToInvite(guest) {
-    console.log("guest: ", guest);
-  return dispatch => {
-    dispatch(addToInviteRequestedAction());
-    // const guestsRef = database.ref('/guests');
-    // guestsRef.child('-KhS0WbBjul4qSEiushh').remove();
-    const pushedRef = database.ref('/guests').push({
-        name: guest.name,
-        baseImg: guest.baseUrl
-    })
-    .then(() => {
-        // const key = pushedRef.key;
-        // console.log(key);
-        dispatch(addToInviteFulfilledAction({
-            guest
-        }));
-    })
-    .catch((error) => {
-        dispatch(addToInviteRejectedAction());
-    });
-  }
+    return dispatch => {
+        dispatch(addToInviteRequestedAction());
+        const pushedRef = database.ref('/guests').push({
+            name: guest.name,
+            baseImg: guest.baseUrl
+        })
+        .then(() => {
+            dispatch(addToInviteFulfilledAction({
+                guest
+            }));
+        })
+        .catch((error) => {
+            dispatch(addToInviteRejectedAction());
+        });
+    }
 }
 
 function addToInviteRequestedAction() {

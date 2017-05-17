@@ -1,4 +1,6 @@
 import React from 'react';
+import UserInput from '../components/invite_userInput.js';
+import PostedList from '../components/invite_postedList.js';
 
 export default class Invite extends React.Component {
 
@@ -16,92 +18,23 @@ export default class Invite extends React.Component {
   }
 
   render() {
-    // const { host, agenda, guest_count, guests } = this.props.invite;
+    const styles = {
+        width: "100%",
+        maxWidth: "500px"
+    }
     return (
-      <div className="container">
-        <div className="well">
-          <h1>Meeting invite</h1>
+        <div className="container">
+            <UserInput
+                onChange = {this.props.onChange}
+                getImgPreview = {this.props.onGetImgPreview}
+                onClick = {this.props.onPostData}
+             />
+             <PostedList
+                 inviteObject = {this.props.inviteObject}
+                 onDeleteInvite = {this.props.onDeleteInvite}
+                 style = {styles}
+              />
         </div>
-        <div className="bg-warning meeting-summary">
-          <div className="row">
-            <div className="col-sm-4 col-md-2">
-              <b>Host:</b>
-            </div>
-            <div className="col-sm-8 col-md-10">
-              {this.props.inviteObject.host}
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-4 col-md-2">
-              <b>Agenda:</b>
-            </div>
-            <div className="col-sm-8 col-md-10">
-              {this.props.inviteObject.agenda}
-            </div>
-          </div>
-        </div>
-        <div className="bg-info meeting-form">
-            <div className="row">
-              <div className="col-sm-4 col-md-2">
-                <b>Name:</b>
-              </div>
-              <div className="col-sm-8 col-md-10">
-                <input
-                  type="text"
-                  onChange={this.props.onChange}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-sm-4 col-md-2">
-                <b>Image:</b>
-              </div>
-              <div className="col-sm-8 col-md-10">
-                <input
-                  type="file"
-                  id="inputFileToLoad"
-                  onChange={this.props.onGetImgPreview}
-                />
-              <img src="" height="300" alt="Image preview..."  />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-sm-4 col-md-2">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={this.props.onPostData}
-                >
-                  I am coming!
-                </button>
-              </div>
-            </div>
-        </div>
-        <div className="meeting-list">
-          <h2>Guests</h2>
-          {this.props.inviteObject.guests && this.props.inviteObject.guests.length > 0 ? (
-            <ul>
-              {this.props.inviteObject.guests.map((guest, index) => {
-                return (
-                    <li key={index}>
-                        <p>{guest.name}</p>
-                        {guest.baseImg ? (
-                            <img src={guest.baseImg} />
-                        ) : null}
-                        <button
-                            type="button"
-                            className="btn btn-primary"
-                            onClick={() => this.props.onDeleteInvite('-KhwbScMUdXOXiLDa-o_')}
-                        >
-                          Delete me!
-                        </button>
-                    </li>
-                );
-              })}
-            </ul>
-          ) : null}
-        </div>
-      </div>
     );
   }
 }
